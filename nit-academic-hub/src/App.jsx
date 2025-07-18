@@ -32,7 +32,7 @@ import MSCSubjectPage from "./pages/MSC/MSCSubjectPage"; // ✅ NEW LINE
 
 // MTech Pages
 import MTech from "./pages/MTECH/MTECH";
-import BranchSemesterPage from "./pages/MTech/BranchSemesterPage";
+import BranchSemesterPage from "./pages/MTECH/BranchSemesterPage";
 import BranchSemesterSubjects from "./pages/MTECH/BranchSemesterSubjects";
 import MtechSubjectPage from "./pages/MTECH/MtechSubjectPage";
 
