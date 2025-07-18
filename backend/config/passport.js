@@ -1,27 +1,28 @@
-const GoogleStrategy = require("passport-google-oauth20").Strategy;
-const passport = require("passport");
-const User = require("../models/User"); // ✅ Make sure this path is correct
+// backend/config/passport.js
+
+const passport        = require("passport");
+const GoogleStrategy  = require("passport-google-oauth20").Strategy;
+const User            = require("../models/user");   // ← lowercase, matches user.js
 
 passport.use(
   new GoogleStrategy(
     {
-      clientID: process.env.GOOGLE_CLIENT_ID,
+      clientID:     process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/api/auth/google/callback",
+      callbackURL:  "/api/auth/google/callback",
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
-        // 🔍 Check if user already exists with googleId
+        // Check if a user already exists with this Google ID
         let user = await User.findOne({ googleId: profile.id });
 
         if (!user) {
-          // ✅ Create a new user without requiring password
+          // If not, create a new user record
           user = new User({
-            name: profile.displayName,
-            email: profile.emails[0].value,
+            name:     profile.displayName,
+            email:    profile.emails[0].value,
             googleId: profile.id,
           });
-
           await user.save();
         }
 
@@ -34,14 +35,16 @@ passport.use(
   )
 );
 
-// ✅ Serialize user ID to the session
+// Serialize user ID into the session
 passport.serializeUser((user, done) => {
   done(null, user.id);
 });
 
-// ✅ Deserialize user from the session
+// Deserialize user by ID from the session
 passport.deserializeUser((id, done) => {
   User.findById(id)
-    .then((user) => done(null, user))
-    .catch((err) => done(err, null));
+    .then(user => done(null, user))
+    .catch(err  => done(err, null));
 });
+
+module.exports = passport;
