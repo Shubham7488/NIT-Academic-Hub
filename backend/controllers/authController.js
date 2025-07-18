@@ -1,4 +1,6 @@
-const User = require("../models/User");
+// backend/controllers/authController.js
+
+const User = require("../models/user"); // ← lowercase, matches user.js
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
@@ -95,3 +97,4 @@ exports.googleLogin = async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 };
+
