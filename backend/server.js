@@ -1,8 +1,10 @@
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const passport = require("passport");
-const session = require("express-session");
+// server.js
+
+const express       = require("express");
+const mongoose      = require("mongoose");
+const cors          = require("cors");
+const passport      = require("passport");
+const session       = require("express-session");
 require("dotenv").config();
 
 // Passport config (Google OAuth, etc.)
@@ -13,18 +15,30 @@ const authRoutes = require("./routes/auth");
 
 const app = express();
 
-// ✅ Middleware
+// Load the allowed frontend origin from env (fall back to localhost for dev)
+const FRONTEND_ORIGIN = process.env.FRONTEND_ORIGIN || "http://localhost:5173";
+
+// ✅ CORS middleware
 app.use(cors({
-  origin: "http://localhost:5173", // React frontend
+  origin: FRONTEND_ORIGIN,
   credentials: true
 }));
+
+// ✅ JSON body parsing
 app.use(express.json());
 
 // ✅ Session middleware (required for passport.js)
 app.use(session({
-  secret: process.env.SESSION_SECRET || "supersecretkey",
+  secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
+  cookie: {
+    secure: process.env.NODE_ENV === "production",       // send cookie only over HTTPS in prod
+    httpOnly: true,                                      // JS on the client cannot read the cookie
+    sameSite: process.env.NODE_ENV === "production"      // allow cross‑site cookie in prod
+              ? "none"
+              : "lax"
+  }
 }));
 
 // ✅ Passport initialization
@@ -41,9 +55,8 @@ app.get("/", (req, res) => {
 
 // ✅ MongoDB connection
 mongoose.connect(process.env.MONGODB_URI, {
-  // The following options are no longer needed but safe to include
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true
 })
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => console.error("❌ MongoDB connection error:", err));
@@ -53,3 +66,4 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });
+
