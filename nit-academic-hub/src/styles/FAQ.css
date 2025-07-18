@@ -1,0 +1,25 @@
+.faq-page {
+  color: #fff;
+  padding: 2rem;
+  background-color: #0f0f2b;
+}
+
+.faq-list {
+  margin-top: 1.5rem;
+}
+
+.faq-item {
+  background: #1a1a3d;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.faq-item h3 {
+  color: #8ab4f8;
+}
+
+.faq-item p {
+  color: #ddd;
+}

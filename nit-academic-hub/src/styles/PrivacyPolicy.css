@@ -1,0 +1,12 @@
+.privacy-policy-container {
+  max-width: 800px;
+  margin: auto;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+.privacy-policy-container h1,
+.privacy-policy-container h2 {
+  margin-top: 2rem;
+  color: var(--heading-color);
+}

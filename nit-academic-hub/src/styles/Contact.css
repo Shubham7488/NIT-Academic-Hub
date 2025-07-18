@@ -1,0 +1,62 @@
+/* src/styles/Contact.css */
+
+.contact-page {
+  /* push content down below navbar */
+  padding: 6rem 1rem 4rem;
+  background-color: #171a2d;
+  min-height: calc(
+    100vh - 200px
+  ); /* adjust if your header/footer height differs */
+}
+
+.contact-page h1 {
+  text-align: center;
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-bottom: 3rem;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.contact-card {
+  background-color: #1f2138;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+}
+
+.contact-card h2 {
+  margin: 0 0 1rem;
+  font-size: 1.6rem;
+  color: #fff;
+}
+
+.contact-card p {
+  margin: 0.6rem 0;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #ccc;
+}
+
+.contact-card a {
+  color: #6c63ff;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.contact-card a:hover {
+  text-decoration: underline;
+}
