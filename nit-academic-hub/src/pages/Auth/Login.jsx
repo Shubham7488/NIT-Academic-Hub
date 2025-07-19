@@ -88,13 +88,13 @@ const Login = () => {
 
         <div className="auth-divider">or</div>
 
-        <div className="google-button">
+{/*         <div className="google-button">
           <GoogleLogin
             onSuccess={handleGoogleSuccess}
             onError={() => alert("❌ Google Login Failed")}
             useOneTap
           />
-        </div>
+        </div> */}
 
         <p className="auth-footer">
           Don’t have an account? <a href="/signup">Sign Up</a>
