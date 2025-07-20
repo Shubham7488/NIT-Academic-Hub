@@ -313,7 +313,7 @@ const Footer = () => {
 
       <div className="footer-bottom">
         <p>
-          &copy; 2024 NIT Kurukshetra Academic Hub. All rights reserved. |
+          &copy; 2025 NIT Kurukshetra Academic Hub. All rights reserved. |
           Developed with ❤️ for students
         </p>
       </div>
